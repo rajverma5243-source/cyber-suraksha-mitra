@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Suraksha Mitra</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #eef4ff;
+  color: #172554;
+}
+
+header {
+  background: #123b78;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+}
+
+main {
+  max-width: 700px;
+  margin: auto;
+  padding: 15px;
+}
+
+.card {
+  background: white;
+  margin: 15px 0;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px #0001;
+}
+
+h2 {
+  color: #123b78;
+}
+
+button, .btn {
+  display: inline-block;
+  background: #123b78;
+  color: white;
+  padding: 12px 16px;
+  margin: 5px 0;
+  border: 0;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+li {
+  margin: 10px 0;
+}
+
+footer {
+  background: #123b78;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🛡️ Cyber Suraksha Mitra</h1>
+  <p>सुरक्षित नागरिक, सुरक्षित डिजिटल भारत</p>
+  <p>Public Safety & Cybersecurity Awareness</p>
+</header>
+
+<main>
+
+<section class="card">
+  <h2>🙏 स्वागत है!</h2>
+  <p>साइबर अपराध से बचें, जागरूक बनें और दूसरों को भी जागरूक करें।</p>
+</section>
+
+<section class="card">
+  <h2>🔐 Cyber Safety Tips</h2>
+  <ul>
+    <li>अपना OTP, UPI PIN या पासवर्ड किसी को न बताएँ।</li>
+    <li>अनजान लिंक पर क्लिक करने से बचें।</li>
+    <li>पैसे प्राप्त करने के लिए UPI PIN डालने की जरूरत नहीं होती।</li>
+    <li>अनजान व्यक्ति के कहने पर स्क्रीन शेयरिंग ऐप इंस्टॉल न करें।</li>
+    <li>मजबूत पासवर्ड और Two-Factor Authentication का उपयोग करें।</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>🚨 Emergency Help</h2>
+  <p>भारत में आपातकालीन सहायता के लिए 112 पर संपर्क करें।</p>
+  <a class="btn" href="tel:112">📞 Call 112</a>
+</section>
+
+<section class="card">
+  <h2>📢 Report Cyber Fraud</h2>
+  <p>वित्तीय साइबर धोखाधड़ी होने पर जल्द से जल्द 1930 पर संपर्क करें।</p>
+  <a class="btn" href="tel:1930">📞 Call 1930</a>
+  <br>
+  <a class="btn" href="https://cybercrime.gov.in/" target="_blank" rel="noopener noreferrer">
+    Official Complaint Portal
+  </a>
+</section>
+
+<section class="card">
+  <h2>🎯 Cyber Safety Quiz</h2>
+  <p id="question">कोई आपसे OTP माँगता है। आपको क्या करना चाहिए?</p>
+  <button onclick="answer(false)">OTP बता देना चाहिए</button>
+  <button onclick="answer(true)">OTP साझा नहीं करना चाहिए</button>
+  <p id="result" aria-live="polite"></p>
+  <p id="score">Score: 0</p>
+  <button onclick="nextQuestion()">Next Question ➜</button>
+</section>
+
+<section class="card">
+  <h2>🤝 Community Mission</h2>
+  <p>युवाओं की मदद से गाँवों और शहरों में साइबर सुरक्षा जागरूकता बढ़ाना हमारा लक्ष्य है।</p>
+  <p><strong>Learn • Protect • Spread Awareness</strong></p>
+</section>
+
+</main>
+
+<footer>
+  <p>Cyber Suraksha Mitra</p>
+  <p>Public Safety & Cybersecurity Awareness Project</p>
+</footer>
+
+<script>
+const questions = [
+  {
+    q: "कोई आपसे OTP माँगता है। क्या करना चाहिए?",
+    options: ["OTP बता दें", "OTP साझा न करें"],
+    answer: 1
+  },
+  {
+    q: "UPI से पैसे प्राप्त करने के लिए क्या आपको PIN बताना चाहिए?",
+    options: ["हाँ", "नहीं"],
+    answer: 1
+  },
+  {
+    q: "साइबर वित्तीय धोखाधड़ी होने पर किस नंबर पर संपर्क कर सकते हैं?",
+    options: ["1930", "101"],
+    answer: 0
+  }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function renderQuestion() {
+  answered = false;
+  const q = questions[current];
+  document.getElementById("question").textContent = q.q;
+
+  const area = document.getElementById("result");
+  area.textContent = "";
+
+  const buttons = q.options.map((option, i) =>
+    `<button onclick="answer(${i === q.answer})">${option}</button>`
+  ).join("<br>");
+
+  document.getElementById("options");
+}
+
+function answer(correct) {
+  if (answered) return;
+  answered = true;
+
+  if (correct) {
+    score++;
+    document.getElementById("result").textContent = "✅ सही जवाब!";
+  } else {
+    document.getElementById("result").textContent = "❌ गलत जवाब। सुरक्षा संबंधी जानकारी दोबारा पढ़ें।";
+  }
+
+  document.getElementById("score").textContent =
+    "Score: " + score + " / " + (current + 1);
+}
+
+function nextQuestion() {
+  current++;
+
+  if (current >= questions.length) {
+    document.getElementById("question").textContent =
+      "Quiz पूरा हुआ! आपका स्कोर: " + score + "/" + questions.length;
+    document.getElementById("result").textContent =
+      "जागरूक बनें और सुरक्षित रहें!";
+    document.querySelectorAll("#quiz button").forEach(b => b.disabled = true);
+    return;
+  }
+
+  const q = questions[current];
+  document.getElementById("question").textContent = q.q;
+
+  const oldButtons = document.querySelectorAll("#quiz button");
+  oldButtons.forEach(b => {
+    if (b.textContent !== "Next Question ➜") b.remove();
+  });
+
+  q.options.forEach((option, i) => {
+    const b = document.createElement("button");
+    b.textContent = option;
+    b.onclick = () => answer(i === q.answer);
+    document.getElementById("question").after(b);
+  });
+
+  answered = false;
+  document.getElementById("result").textContent = "";
+}
+</script>
+
+</body>
+</html>
